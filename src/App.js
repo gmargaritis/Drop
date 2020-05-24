@@ -4,8 +4,8 @@ import './App.css';
 import Quiz from './Components/Quiz';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Completed from './Components/Completed';
-import connect from './connect.png';;
-
+import connect from './connect.png';
+import logo from './logo.png';
 
 class App extends Component {
   
@@ -26,7 +26,7 @@ class App extends Component {
       <Router>
         <Route path="/" exact>
           <div className="App">
-            <header>.Drop</header>
+            <img src={logo} alt="Logo" style={{ height: 600, width: 1200}} className="logo"/>
             <img src={connect} alt="Connect" style={{ height: 40, width: 245}} className="centered" onClick={this.handleClick}/>
           </div>
         </Route>

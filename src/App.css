@@ -24,3 +24,17 @@
   left: 50%;
   margin-left: -100px;
 }
+
+.logo {
+  position: fixed;
+  top: 100px;
+  left: 380px;
+}
+
+@media only screen and (max-width: 1366px) {
+  .logo {
+    position: fixed;
+    top: 0px;
+    left: 100px;
+  }
+}
