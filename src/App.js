@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Quiz from './Components/Quiz';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import Completed from './Components/Completed';
 import connect from './connect.png';
 import logo from './logo.png';
 
@@ -32,9 +31,6 @@ class App extends Component {
         </Route>
         <Route path="/quiz">
           <Quiz/>
-        </Route>
-        <Route path="/completed">
-          <Completed/>
         </Route>
       </Router>
     )
