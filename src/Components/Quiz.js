@@ -9,7 +9,6 @@ class Quiz extends Component {
       currentQuestion: null
     }
     this.handleClick = this.handleClick.bind(this);
-    this.changeAnswer = this.changeAnswer.bind(this);
   }
 
   // Update current question's state
