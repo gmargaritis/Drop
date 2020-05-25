@@ -1,8 +1,6 @@
 
 import React, { Component } from 'react';
 import './App.css';
-import Quiz from './Components/Quiz';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
 import connect from './connect.png';
 import logo from './logo.png';
 
