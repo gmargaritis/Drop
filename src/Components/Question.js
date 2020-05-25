@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import Artist from './Artist';
 import Song from './Song';
-import logo from './logo.png';
+import hours4 from '../4.png';
+import hours5 from '../5.png';
+import hours6 from '../6.png';
 import pop from '../pop.png';
 import disco from '../disco.png';
 import hiphop from '../hip-hop.png';
@@ -14,7 +16,7 @@ import './Question.css';
 let songs = [];
 let favoriteArtist = null;
 let favoriteSong = null;
-let hours8 = [7, 10, 10, 30, 10, 10, 6];
+let hours = [];
 
 class Question extends Component{
 
@@ -32,6 +34,7 @@ class Question extends Component{
     this.getRecommenedSongs = this.getRecommenedSongs.bind(this);
     this.handleArtist = this.handleArtist.bind(this);
     this.handleSong = this.handleSong.bind(this);
+    this.handleHours = this.handleHours.bind(this);
   }
 
   // Get and store the access_token that is located in the callback url
@@ -79,40 +82,40 @@ class Question extends Component{
 
   // Fetch songs with different attributes and store them in songs array
   async getRecommenedSongs() {
-    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[0]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.2&target_energy=0.2&min_popularity=30&target_tempo=60`, {
+    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours[0]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.2&target_energy=0.2&min_popularity=30&target_tempo=60`, {
       headers: {'Authorization': 'Bearer ' + this.state.access_token}
     }).then(response => response.json())
     .then(data => data.tracks.forEach(track => songs.push(track.uri)))
 
-    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[1]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.4&target_energy=0.4&min_popularity=50&target_tempo=100`, {
+    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours[1]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.4&target_energy=0.4&min_popularity=50&target_tempo=100`, {
       headers: {'Authorization': 'Bearer ' + this.state.access_token}
     }).then(response => response.json())
     .then(data => data.tracks.forEach(track => songs.push(track.uri)))
     
 
-    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[2]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.6&target_energy=0.6&min_popularity=50&target_tempo=140`, {
+    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours[2]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.6&target_energy=0.6&min_popularity=50&target_tempo=140`, {
       headers: {'Authorization': 'Bearer ' + this.state.access_token}
     }).then(response => response.json())
     .then(data => data.tracks.forEach(track => songs.push(track.uri)))
     
     
-    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[3]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.9&target_energy=0.9&min_popularity=70&target_tempo=180`, {
+    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours[3]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.9&target_energy=0.9&min_popularity=70&target_tempo=180`, {
       headers: {'Authorization': 'Bearer ' + this.state.access_token}
     }).then(response => response.json())
     .then(data => data.tracks.forEach(track => songs.push(track.uri)))
 
     
-    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[4]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.6&target_energy=0.6&min_popularity=50&target_tempo=160`, {
+    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours[4]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.6&target_energy=0.6&min_popularity=50&target_tempo=160`, {
       headers: {'Authorization': 'Bearer ' + this.state.access_token}
     }).then(response => response.json())
     .then(data => data.tracks.forEach(track => songs.push(track.uri)))
 
-    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[5]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.4&target_energy=0.4&min_popularity=50&target_tempo=140`, {
+    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours[5]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.4&target_energy=0.4&min_popularity=50&target_tempo=140`, {
       headers: {'Authorization': 'Bearer ' + this.state.access_token}
     }).then(response => response.json())
     .then(data => data.tracks.forEach(track => songs.push(track.uri)))
 
-    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[6]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.4&target_energy=0.4&min_popularity=50&target_tempo=100`, {
+    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours[6]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.4&target_energy=0.4&min_popularity=50&target_tempo=100`, {
       headers: {'Authorization': 'Bearer ' + this.state.access_token}
     }).then(response => response.json())
     .then(data => data.tracks.forEach(track => songs.push(track.uri)))
@@ -138,15 +141,37 @@ class Question extends Component{
     favoriteSong = song
   }
 
+  handleHours(ans) {
+    if (ans === 4) {
+      hours.push(3, 5, 7, 20, 7, 5, 2)
+    }
+    else if (ans === 5) {
+      hours.push(5, 7, 10, 25, 10, 7, 4)
+    }
+    else if (ans === 6) {
+      hours.push(7, 10, 10, 30, 10, 10, 6)
+    }
+  }
+
   render() {
       if (!this.props.questionID) {
         return(
           <div>
-            <header>What's the length of your party</header>  
-            <img src={logo} alt="Logo" onClick={() => this.props.handleClick(1, 'pop')}/>
-            <img src={logo} alt="Logo"/>
-            <img src={logo} alt="Logo"/>
-            <img src={logo} alt="Logo"/>
+            <div class="header">How many hours will your party last</div>
+            <div class="align-center">
+              <div class="question">
+                <img src={hours4} alt="Logo" onClick={() => {this.props.handleClick(1)
+                                                          this.handleHours(4)}}/>
+              </div>
+              <div class="question">
+                <img src={hours5} alt="Logo" onClick={() => {this.props.handleClick(1)
+                                                          this.handleHours(5)}}/>
+              </div>
+              <div class="question">
+                <img src={hours6} alt="Logo" onClick={() => {this.props.handleClick(1)
+                                                          this.handleHours(6)}}/>
+              </div>
+            </div>
           </div>
         )
       }
