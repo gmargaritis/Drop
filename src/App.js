@@ -23,7 +23,7 @@ class App extends Component {
 
   render() {
     return(
-      <Router>
+      <Router basename="/">
         <Route path="/" exact>
           <div className="App">
             <img src={logo} alt="Logo" style={{ height: 600, width: 1200}} className="logo"/>
