@@ -14,16 +14,15 @@ class Quiz extends Component {
     this.changeAnswer = this.changeAnswer.bind(this);
   }
 
-  handleClick(questionID, answer) {
+  handleClick(questionID) {
     this.setState({
       currentQuestion: questionID
     });
-    this.changeAnswer(answer)
+    //this.changeAnswer(answer)
   }
 
   changeAnswer(answer) {
     answers.push(answer)
-    console.log(answers)
   }
 
   render() {
@@ -36,3 +35,5 @@ class Quiz extends Component {
 }
 
 export default Quiz;
+
+

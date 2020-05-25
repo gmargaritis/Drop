@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import connect from './connect.png';
 import logo from './logo.png';
 
+
 class App extends Component {
   
   constructor(props) {

@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
+import Artist from './Artist';
+import Song from './Song';
 import logo from './logo.png';
-import logo2 from './logo2.png';
-import logo3 from './logo3.png';
-import logo4 from './logo4.png';
+import pop from '../pop.png';
+import disco from '../disco.png';
+import hiphop from '../hip-hop.png';
+import techno from '../techno.png';
+import edm from '../edm.png';
 import queryString from 'query-string';
 
+
 let songs = [];
+let favoriteArtist = null;
+let favoriteSong = null;
 let hours8 = [7, 10, 10, 30, 10, 10, 6];
 
 class Question extends Component{
@@ -13,9 +20,7 @@ class Question extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      favoriteArtist: null,
-      favoriteGenre: 'hip-hop',
-      favoriteSong: null,
+      favoriteGenre: null,
       access_token: null
     }
     this.handlePlaylist = this.handlePlaylist.bind(this);
@@ -24,6 +29,8 @@ class Question extends Component{
     this.getPlaylistID = this.getPlaylistID.bind(this);
     this.populatePlaylist = this.populatePlaylist.bind(this);
     this.getRecommenedSongs = this.getRecommenedSongs.bind(this);
+    this.handleArtist = this.handleArtist.bind(this);
+    this.handleSong = this.handleSong.bind(this);
   }
 
   componentDidMount() {
@@ -66,45 +73,43 @@ class Question extends Component{
   }
 
   async getRecommenedSongs() {
-    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[0]}&market=US&seed_genres=${this.state.favoriteGenre}&target_danceability=0.2&target_energy=0.2&min_popularity=30&target_tempo=60`, {
+    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[0]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.2&target_energy=0.2&min_popularity=30&target_tempo=60`, {
       headers: {'Authorization': 'Bearer ' + this.state.access_token}
     }).then(response => response.json())
     .then(data => data.tracks.forEach(track => songs.push(track.uri)))
 
-    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[1]}&market=US&seed_genres=${this.state.favoriteGenre}&target_danceability=0.4&target_energy=0.4&min_popularity=50&target_tempo=100`, {
+    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[1]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.4&target_energy=0.4&min_popularity=50&target_tempo=100`, {
       headers: {'Authorization': 'Bearer ' + this.state.access_token}
     }).then(response => response.json())
     .then(data => data.tracks.forEach(track => songs.push(track.uri)))
     
 
-    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[2]}&market=US&seed_genres=${this.state.favoriteGenre}&target_danceability=0.6&target_energy=0.6&min_popularity=50&target_tempo=140`, {
+    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[2]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.6&target_energy=0.6&min_popularity=50&target_tempo=140`, {
       headers: {'Authorization': 'Bearer ' + this.state.access_token}
     }).then(response => response.json())
     .then(data => data.tracks.forEach(track => songs.push(track.uri)))
     
     
-    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[3]}&market=US&seed_genres=${this.state.favoriteGenre}&target_danceability=0.9&target_energy=0.9&min_popularity=70&target_tempo=180`, {
+    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[3]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.9&target_energy=0.9&min_popularity=70&target_tempo=180`, {
       headers: {'Authorization': 'Bearer ' + this.state.access_token}
     }).then(response => response.json())
     .then(data => data.tracks.forEach(track => songs.push(track.uri)))
 
     
-    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[4]}&market=US&seed_genres=${this.state.favoriteGenre}&target_danceability=0.6&target_energy=0.6&min_popularity=50&target_tempo=160`, {
+    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[4]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.6&target_energy=0.6&min_popularity=50&target_tempo=160`, {
       headers: {'Authorization': 'Bearer ' + this.state.access_token}
     }).then(response => response.json())
     .then(data => data.tracks.forEach(track => songs.push(track.uri)))
 
-    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[5]}&market=US&seed_genres=${this.state.favoriteGenre}&target_danceability=0.4&target_energy=0.4&min_popularity=50&target_tempo=140`, {
+    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[5]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.4&target_energy=0.4&min_popularity=50&target_tempo=140`, {
       headers: {'Authorization': 'Bearer ' + this.state.access_token}
     }).then(response => response.json())
     .then(data => data.tracks.forEach(track => songs.push(track.uri)))
 
-    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[6]}&market=US&seed_genres=${this.state.favoriteGenre}&target_danceability=0.4&target_energy=0.4&min_popularity=50&target_tempo=100`, {
+    await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[6]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.4&target_energy=0.4&min_popularity=50&target_tempo=100`, {
       headers: {'Authorization': 'Bearer ' + this.state.access_token}
     }).then(response => response.json())
     .then(data => data.tracks.forEach(track => songs.push(track.uri)))
-
-    console.log(songs)
   }
 
   populatePlaylist(playlistID) {
@@ -114,6 +119,14 @@ class Question extends Component{
       headers: { 'Authorization': 'Bearer ' + this.state.access_token, 'Content-Type': 'application/json' },
       body: JSON.stringify({ uris: songs}),
     })
+  }
+
+  handleArtist(artist) {
+    favoriteArtist = artist
+  }
+
+  handleSong(song) {
+    favoriteSong = song
   }
 
   render() {
@@ -131,33 +144,50 @@ class Question extends Component{
       else if (this.props.questionID === 1) {
         return(
           <div>
-            <header>What's your partys theme</header>  
-            <img src={logo2} alt="Logo2" onClick={() => this.props.handleClick(2, 'shakira')}/>
+            <header>What's your partys theme</header> 
+            <img src={pop} alt="Logo" onClick={() => {this.props.handleClick(2)
+                                                      this.setState({favoriteGenre: 'pop'})}}/>
+
+            <img src={disco} alt="Logo" onClick={() => {this.props.handleClick(2)
+                                                        this.setState({favoriteGenre: 'disco'})}}/>
+
+            <img src={hiphop} alt="Logo" onClick={() => {this.props.handleClick(2)
+                                                         this.setState({favoriteGenre: 'hip-hop'})}}/>
+
+            <img src={techno} alt="Logo" onClick={() => {this.props.handleClick(2)
+                                                         this.setState({favoriteGenre: 'techno'})}}/>
+                                                         
+            <img src={edm} alt="Logo" onClick={() => {this.props.handleClick(2)
+                                                      this.setState({favoriteGenre: 'edm'})}}/>
           </div>
         )
       }
       else if (this.props.questionID === 2) {
         return(
-          <div>
-            <header>What's your favorite artist</header>  
-            <img src={logo3} alt="Logo3" onClick={() => this.props.handleClick(3, 'hips dont lie')}/>
-          </div>
+          <Artist genre = {this.state.favoriteGenre} handleClick = {this.props.handleClick} handleArtist = {this.handleArtist}/>
         )
       }
       else if (this.props.questionID === 3) {
         return(
-          <div>
-            <header>Which song is your party anthem</header>  
-              <img src={logo4} alt="Logo4" onClick={() => {
-                this.handlePlaylist() 
-                this.props.handleClick(4, 'this')}}/>
-          </div>
+          <Song genre = {this.state.favoriteGenre} handleClick = {this.props.handleClick} handleSong = {this.handleSong}/>
         )
       }
       else if (this.props.questionID === 4) {
         return(
           <div>
-            <header>Your playlist is ready</header>
+            <header>Press the button below to create your playlist</header>
+            <button onClick={() => {this.handlePlaylist()
+                                    this.props.handleClick(5, ' ')}}>Create</button>
+          </div>
+        )
+      }
+      else if (this.props.questionID === 5) {
+        return(
+          <div>
+            <header>
+              Your playlist is ready !
+              Check your account to listen
+            </header>
           </div>
         )
       }
