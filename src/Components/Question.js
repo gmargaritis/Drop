@@ -157,8 +157,8 @@ class Question extends Component{
       if (!this.props.questionID) {
         return(
           <div>
-            <div class="header">How many hours will your party last</div>
-            <div class="align-center">
+            <div class="header5">How many hours will your party last</div>
+            <div class="align-center2">
               <div class="question">
                 <img src={hours4} alt="Logo" onClick={() => {this.props.handleClick(1)
                                                           this.handleHours(4)}}/>
