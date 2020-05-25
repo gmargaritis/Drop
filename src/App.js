@@ -23,17 +23,10 @@ class App extends Component {
 
   render() {
     return(
-      <Router basename="/">
-        <Route path="/" exact>
-          <div className="App">
-            <img src={logo} alt="Logo" style={{ height: 600, width: 1200}} className="logo"/>
-            <img src={connect} alt="Connect" style={{ height: 40, width: 245}} className="centered" onClick={this.handleClick}/>
-          </div>
-        </Route>
-        <Route path="/quiz">
-          <Quiz/>
-        </Route>
-      </Router>
+      <div className="App">
+        <img src={logo} alt="Logo" style={{ height: 600, width: 1200}} className="logo"/>
+        <img src={connect} alt="Connect" style={{ height: 40, width: 245}} className="centered" onClick={this.handleClick}/>
+      </div>
     )
   }
 }
