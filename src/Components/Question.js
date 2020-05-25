@@ -7,7 +7,10 @@ import disco from '../disco.png';
 import hiphop from '../hip-hop.png';
 import techno from '../techno.png';
 import edm from '../edm.png';
+import create from '../create.png'
 import queryString from 'query-string';
+import './Question.css';
+
 
 
 let songs = [];
@@ -144,21 +147,34 @@ class Question extends Component{
       else if (this.props.questionID === 1) {
         return(
           <div>
-            <header>What's your partys theme</header> 
-            <img src={pop} alt="Logo" onClick={() => {this.props.handleClick(2)
-                                                      this.setState({favoriteGenre: 'pop'})}}/>
-
-            <img src={disco} alt="Logo" onClick={() => {this.props.handleClick(2)
-                                                        this.setState({favoriteGenre: 'disco'})}}/>
-
-            <img src={hiphop} alt="Logo" onClick={() => {this.props.handleClick(2)
-                                                         this.setState({favoriteGenre: 'hip-hop'})}}/>
-
-            <img src={techno} alt="Logo" onClick={() => {this.props.handleClick(2)
-                                                         this.setState({favoriteGenre: 'techno'})}}/>
-                                                         
-            <img src={edm} alt="Logo" onClick={() => {this.props.handleClick(2)
-                                                      this.setState({favoriteGenre: 'edm'})}}/>
+            <div class="header">What's your partys theme</div>
+            <div class="genre">
+              <div class="question">
+                <img src={pop} alt="Logo" onClick={() => {this.props.handleClick(2)
+                                                          this.setState({favoriteGenre: 'pop'})}}/>
+                <div class="desc">Pop</div>
+              </div>
+              <div class="question">
+                <img src={disco} alt="Logo" onClick={() => {this.props.handleClick(2)
+                                                            this.setState({favoriteGenre: 'disco'})}}/>
+                <div class="desc">Disco</div>
+              </div>
+              <div class="question">
+                <img src={hiphop} alt="Logo" onClick={() => {this.props.handleClick(2)
+                                                            this.setState({favoriteGenre: 'hip-hop'})}}/>
+                <div class="desc">Hip-Hop</div>
+              </div>
+              <div class="question">
+                <img src={techno} alt="Logo" onClick={() => {this.props.handleClick(2)
+                                                            this.setState({favoriteGenre: 'techno'})}}/>
+                <div class="desc">Techno</div>
+              </div>
+              <div class="question">
+                <img src={edm} alt="Logo" onClick={() => {this.props.handleClick(2)
+                                                          this.setState({favoriteGenre: 'edm'})}}/>
+                <div class="desc">EDM</div>
+              </div>
+            </div>
           </div>
         )
       }
@@ -175,19 +191,17 @@ class Question extends Component{
       else if (this.props.questionID === 4) {
         return(
           <div>
-            <header>Press the button below to create your playlist</header>
-            <button onClick={() => {this.handlePlaylist()
-                                    this.props.handleClick(5, ' ')}}>Create</button>
+            <div class="header4">Press the button below to create your playlist</div>
+            <img src={create} alt="create" style={{ height: 40, width: 245}} class="centered"onClick={() => {this.handlePlaylist()
+                                                                          this.props.handleClick(5)}}/>
           </div>
         )
       }
       else if (this.props.questionID === 5) {
         return(
           <div>
-            <header>
-              Your playlist is ready !
-              Check your account to listen
-            </header>
+            <div class="header2">Your playlist is ready !</div>
+            <div class="header3">Check your account to listen</div>
           </div>
         )
       }
