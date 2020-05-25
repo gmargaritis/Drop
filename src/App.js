@@ -18,7 +18,7 @@ class App extends Component {
   }
   
   handleClick() {
-    window.location = 'https://accounts.spotify.com/authorize?client_id=8bbbfbeebb874b4dae4e6445fb614d02&redirect_uri=http://localhost:3000/quiz/&scope=user-read-private%20playlist-modify-private%20playlist-read-private&response_type=token'
+    window.location = 'https://accounts.spotify.com/authorize?client_id=8bbbfbeebb874b4dae4e6445fb614d02&redirect_uri=https://drop-playlists.netlify.app/quiz/&scope=user-read-private%20playlist-modify-private%20playlist-read-private&response_type=token'
   }
 
   render() {
