@@ -30,8 +30,10 @@ import martin from '../martin.png';
 
 
 class Artist extends Component{
-
+    //  Render the artists based on the chosen genre
   render(){
+    // Call handleClick to udpate the number of the next question
+    // Call handleArtist to store artists uri
     if (this.props.genre === 'pop') {
       return(
         <div>

@@ -14,7 +14,8 @@ class App extends Component {
     }
     this.handleClick = this.handleClick.bind(this);
   }
-  
+
+  // Redirect to the spotify login portal for user authorization
   handleClick() {
     window.location = 'https://accounts.spotify.com/authorize?client_id=8bbbfbeebb874b4dae4e6445fb614d02&redirect_uri=https://drop-playlists.netlify.app/quiz/&scope=user-read-private%20playlist-modify-private%20playlist-read-private&response_type=token'
   }

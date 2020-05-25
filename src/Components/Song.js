@@ -27,8 +27,10 @@ import marshmello from '../marshmello.png';
 import martin from '../martin.png';
 
 class Song extends Component{
-  
+  // Render songs based on the chosen genre
   render(){
+    // Call handleClick to update the number of the next question
+    // Call handleSong to store songs uri
     if (this.props.genre === 'pop') {
       return(
         <div>

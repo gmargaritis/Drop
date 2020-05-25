@@ -5,6 +5,7 @@ import Quiz from './Components/Quiz';
 
 const Routes = () => {
   return (
+    // Create paths and render the right components
     <Switch>
       <Route exact path="/" component={App} />
       <Route exact path="/quiz" component={Quiz} />

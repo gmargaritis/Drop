@@ -11,8 +11,6 @@ import create from '../create.png'
 import queryString from 'query-string';
 import './Question.css';
 
-
-
 let songs = [];
 let favoriteArtist = null;
 let favoriteSong = null;
@@ -36,11 +34,13 @@ class Question extends Component{
     this.handleSong = this.handleSong.bind(this);
   }
 
+  // Get and store the access_token that is located in the callback url
   componentDidMount() {
     let parsed = queryString.parse(window.location.hash);
     this.setState({access_token: parsed.access_token});
   }
 
+  // Asyncronously make the necessary calls to build the playlist
   async handlePlaylist() {
     await this.getRecommenedSongs()
     let userID = await this.getUserID()
@@ -57,6 +57,7 @@ class Question extends Component{
     return data.id;
   }
 
+  // Creates an playlist for the user
   createPlaylist(userID) {
     return fetch(`https://api.spotify.com/v1/users/${userID}/playlists`,  {
       method: 'POST',
@@ -65,6 +66,7 @@ class Question extends Component{
     })
   }
 
+  // Get the spotify id of the playlist that was created by createPlaylist
   async getPlaylistID() {
     let response = await fetch('https://api.spotify.com/v1/me/playlists', {
       headers: {'Authorization': 'Bearer ' + this.state.access_token}
@@ -75,6 +77,7 @@ class Question extends Component{
     return id
   }
 
+  // Fetch songs with different attributes and store them in songs array
   async getRecommenedSongs() {
     await fetch(`https://api.spotify.com/v1/recommendations?limit=${hours8[0]}&market=US&seed_genres=${this.state.favoriteGenre}&seed_artists=${favoriteArtist}&seed_tracks=${favoriteSong}&target_danceability=0.2&target_energy=0.2&min_popularity=30&target_tempo=60`, {
       headers: {'Authorization': 'Bearer ' + this.state.access_token}
@@ -115,6 +118,7 @@ class Question extends Component{
     .then(data => data.tracks.forEach(track => songs.push(track.uri)))
   }
 
+  // Populates the playlist with the fetched songs 
   populatePlaylist(playlistID) {
     console.log(songs)
     return fetch(`https://api.spotify.com/v1/playlists/${playlistID}/tracks`,  {
@@ -124,10 +128,12 @@ class Question extends Component{
     })
   }
 
+  // Store the chosen artist
   handleArtist(artist) {
     favoriteArtist = artist
   }
 
+  // Store the chosen song 
   handleSong(song) {
     favoriteSong = song
   }
@@ -144,33 +150,34 @@ class Question extends Component{
           </div>
         )
       }
+      // Render genres, store the answer by udating state
       else if (this.props.questionID === 1) {
         return(
           <div>
-            <div class="header">What's your partys theme</div>
+            <div class="header">What's your party's theme</div>
             <div class="genre">
               <div class="question">
-                <img src={pop} alt="Logo" onClick={() => {this.props.handleClick(2)
+                <img src={pop} alt="pop" onClick={() => {this.props.handleClick(2)
                                                           this.setState({favoriteGenre: 'pop'})}}/>
                 <div class="desc">Pop</div>
               </div>
               <div class="question">
-                <img src={disco} alt="Logo" onClick={() => {this.props.handleClick(2)
+                <img src={disco} alt="disco" onClick={() => {this.props.handleClick(2)
                                                             this.setState({favoriteGenre: 'disco'})}}/>
                 <div class="desc">Disco</div>
               </div>
               <div class="question">
-                <img src={hiphop} alt="Logo" onClick={() => {this.props.handleClick(2)
+                <img src={hiphop} alt="hip-hop" onClick={() => {this.props.handleClick(2)
                                                             this.setState({favoriteGenre: 'hip-hop'})}}/>
                 <div class="desc">Hip-Hop</div>
               </div>
               <div class="question">
-                <img src={techno} alt="Logo" onClick={() => {this.props.handleClick(2)
+                <img src={techno} alt="techno" onClick={() => {this.props.handleClick(2)
                                                             this.setState({favoriteGenre: 'techno'})}}/>
                 <div class="desc">Techno</div>
               </div>
               <div class="question">
-                <img src={edm} alt="Logo" onClick={() => {this.props.handleClick(2)
+                <img src={edm} alt="edm" onClick={() => {this.props.handleClick(2)
                                                           this.setState({favoriteGenre: 'edm'})}}/>
                 <div class="desc">EDM</div>
               </div>
@@ -178,16 +185,19 @@ class Question extends Component{
           </div>
         )
       }
+      // Render the artists
       else if (this.props.questionID === 2) {
         return(
           <Artist genre = {this.state.favoriteGenre} handleClick = {this.props.handleClick} handleArtist = {this.handleArtist}/>
         )
       }
+      // Render the songs
       else if (this.props.questionID === 3) {
         return(
           <Song genre = {this.state.favoriteGenre} handleClick = {this.props.handleClick} handleSong = {this.handleSong}/>
         )
       }
+      // Make all the necessary calls to the Spotify API to create the playlist
       else if (this.props.questionID === 4) {
         return(
           <div>

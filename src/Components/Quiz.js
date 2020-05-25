@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import Question from './Question';
 
-let answers = [];
-
 class Quiz extends Component {
 
   constructor(props) {
@@ -14,17 +12,12 @@ class Quiz extends Component {
     this.changeAnswer = this.changeAnswer.bind(this);
   }
 
+  // Update current question's state
   handleClick(questionID) {
     this.setState({
       currentQuestion: questionID
     });
-    //this.changeAnswer(answer)
   }
-
-  changeAnswer(answer) {
-    answers.push(answer)
-  }
-
   render() {
     return(
       <div>
